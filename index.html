@@ -1,62 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Valentine Rouan 💖</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentijn Rouan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    #heart {
+      width: 150px;
+      height: 150px;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      cursor: pointer;
+    }
+    #heart::before,
+    #heart::after {
+      content: "";
+      width: 150px;
+      height: 150px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+    #heart::before {
+      top: -75px;
+      left: 0;
+    }
+    #heart::after {
+      left: 75px;
+      top: 0;
+    }
+    #message {
+      position: absolute;
+      bottom: 20px;
+      font-size: 2em;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    .particle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="heart"></div>
+  <div id="message">I love you Rouan! Habibti van me</div>
 
-    <!-- Optional cute font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <script>
+    const heart = document.getElementById('heart');
+    const message = document.getElementById('message');
 
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-
-  <body>
-    <!-- Ambient background layers -->
-    <div class="bg">
-      <div class="sparkles" aria-hidden="true"></div>
-      <div class="float-hearts" aria-hidden="true"></div>
-    </div>
-
-    <main class="wrap">
-      <section class="card" aria-label="Valentine card">
-        <header class="header">
-          <h1 class="title">Hey Rouann 💗</h1>
-          <p class="subtitle">Ik moet je wat vertellen…</p>
-        </header>
-
-        <div class="center">
-          <button id="heartBtn" class="heart-btn" aria-label="Click the heart">
-            <span class="heart" aria-hidden="true">❤</span>
-            <span class="heart-text">Click me</span>
-          </button>
-
-          <p id="message" class="message" aria-live="polite" hidden>
-            I love you Rouan 💖 Wil je mijn valentijn zijn? :)
-          </p>
-
-          <div id="actions" class="actions" hidden>
-            <button id="yesBtn" class="btn yes">Ja 💞</button>
-            <button id="noBtn" class="btn no">Nee 🙈</button>
-          </div>
-
-          <p id="final" class="final" aria-live="polite" hidden></p>
-        </div>
-
-        <footer class="footer">
-          <span class="tiny">made with extra pink vibes ✨</span>
-        </footer>
-      </section>
-
-      <!-- Burst layer (confetti/hearts created by JS) -->
-      <div id="burstLayer" class="burst-layer" aria-hidden="true"></div>
-    </main>
-
-    <script src="script.js"></script>
-  </body>
+    heart.addEventListener('click', () => {
+      // Show the message
+      message.style.opacity = 1;
+      // Create particle effect (hearts/flowers)
+      for (let i = 0; i < 20; i++) {
+        createParticle();
+      }
+    });
+    
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      document.body.appendChild(particle);
+      // Set initial position to heart's center
+      const rect = heart.getBoundingClientRect();
+      particle.style.left = rect.left + rect.width / 2 + 'px';
+      particle.style.top = rect.top + rect.height / 2 + 'px';
+      particle.style.opacity = 1;
+      
+      // Animate particle
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = Math.random() * 100 + 50;
+      const destX = Math.cos(angle) * distance;
+      const destY = Math.sin(angle) * distance;
+      
+      particle.animate(
+        [
+          { transform: 'translate(0, 0)', opacity: 1 },
+          { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
+        ],
+        {
+          duration: 1000,
+          easing: 'ease-out',
+          fill: 'forwards'
+        }
+      );
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 1000);
+    }
+  </script>
+</body>
 </html>
