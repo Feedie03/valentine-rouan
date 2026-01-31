@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine Rouan 💖</title>
+
+    <!-- Optional cute font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Ambient background layers -->
+    <div class="bg">
+      <div class="sparkles" aria-hidden="true"></div>
+      <div class="float-hearts" aria-hidden="true"></div>
+    </div>
+
+    <main class="wrap">
+      <section class="card" aria-label="Valentine card">
+        <header class="header">
+          <h1 class="title">Hey Rouann 💗</h1>
+          <p class="subtitle">Ik moet je wat vertellen…</p>
+        </header>
+
+        <div class="center">
+          <button id="heartBtn" class="heart-btn" aria-label="Click the heart">
+            <span class="heart" aria-hidden="true">❤</span>
+            <span class="heart-text">Click me</span>
+          </button>
+
+          <p id="message" class="message" aria-live="polite" hidden>
+            I love you Rouan 💖 Wil je mijn valentijn zijn? :)
+          </p>
+
+          <div id="actions" class="actions" hidden>
+            <button id="yesBtn" class="btn yes">Ja 💞</button>
+            <button id="noBtn" class="btn no">Nee 🙈</button>
+          </div>
+
+          <p id="final" class="final" aria-live="polite" hidden></p>
+        </div>
+
+        <footer class="footer">
+          <span class="tiny">made with extra pink vibes ✨</span>
+        </footer>
+      </section>
+
+      <!-- Burst layer (confetti/hearts created by JS) -->
+      <div id="burstLayer" class="burst-layer" aria-hidden="true"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
